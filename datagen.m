@@ -10,7 +10,7 @@ N_TEXTURES = length(TEXTURES_ENTRIES);
 
 MAX_S = 640;
 
-N_SAMPLES = 1000;
+N_SAMPLES = 10;
 
 CARD_MASK = imread("cardmask.png");
 CARD_MASK = CARD_MASK(:, :, 1) > 0;
@@ -130,7 +130,7 @@ for i=1:N_SAMPLES
 		annot.bbox = bbox;
 		annot.class = classes(j);
 	
-		annots = {annots, annot};
+		annots = cat(1, annots, annot);
 	end
 
 	image_filename = num2str(i, "%05d") + ".jpg";
@@ -146,5 +146,5 @@ for i=1:N_SAMPLES
 end
 
 
-out_json = fopen("gt.json", "w");
+out_json = fopen("annotations.json", "w");
 fprintf(out_json, jsonencode(gt));
