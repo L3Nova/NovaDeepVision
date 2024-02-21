@@ -98,7 +98,7 @@ for i=1:N_SAMPLES
 	polymasks(:, :, 1) = [];
 	n_polymasks = size(polymasks, 3);
 
-	annots = [];
+	annots = {};
 	% Generate segmentation polygons
 	for j=1:n_polymasks
 		mask = polymasks(:, :, j);
@@ -130,7 +130,7 @@ for i=1:N_SAMPLES
 		annot.bbox = bbox;
 		annot.class = classes(j);
 	
-		annots = [annots, annot];
+		annots = {annots, annot};
 	end
 
 	image_filename = num2str(i, "%05d") + ".jpg";
